@@ -285,6 +285,13 @@ function displayClock(){
 }
 // ---------------- clock ----------------
 
+// window.onload =checkdisplay();
+// function checkdisplay(){
+//   let PlaysoundPermission = document.getElementById('play-sound-cb').checked;
+//  console.log(PlaysoundPermission);
+//   setTimeout(checkdisplay, 2000);
+// }
+
 
 // ---------------- timer ----------------
 function pauseAll(){
@@ -316,18 +323,18 @@ startBtn.addEventListener("click",function(){
               shortBreakBtn.dispatchEvent(new Event('click'));
               document.querySelector(".short-break").checked = "true";
               startBtn.dispatchEvent(new Event('click'));
-              notifSound.play();
+              checkSoundPermission();
             }
             else if (active=="short"){
               longBreakBtn.dispatchEvent(new Event('click'));
               document.querySelector(".long-break").checked = "true";
               startBtn.dispatchEvent(new Event('click'));
-              notifSound.play();
+              checkSoundPermission();
             }
             else if (active=="long"){
               focusBtn.dispatchEvent(new Event('click'));
               document.querySelector(".focus").checked = "true";
-              alarm2.play();
+              checkSoundPermission();
             }
           }
         }
@@ -424,3 +431,12 @@ Quote.addEventListener('change', function() {
   this.checked ? document.getElementById("motivator").style.display="none" : 
   document.getElementById("motivator").style.display="block";
     });
+
+function checkSoundPermission(){
+  if (document.getElementById('play-sound-cb').checked){
+    notifSound.play();
+  }
+    else{
+      return;
+    }
+};
